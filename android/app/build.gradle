@@ -1,0 +1,53 @@
+apply plugin: 'com.android.application'
+//apply plugin: 'com.yanzhenjie.andserver'
+def app_version_name = "0.3.5"
+def app_version_code = 4
+android {
+    compileSdkVersion 30
+    buildToolsVersion "30.0.3"
+    defaultConfig {
+        applicationId 'com.seer.pda'
+        minSdkVersion 21
+        targetSdkVersion 30
+        versionCode app_version_code
+        versionName app_version_name
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    sourceSets {
+        main {
+            java.srcDirs = ['src/main/java', 'src/main/java/com.seer.map', 'src/main/java/smap']
+        }
+    }
+    compileOptions {
+        sourceCompatibility = 1.8
+        targetCompatibility = 1.8
+    }
+    android.applicationVariants.all {
+        variant ->
+            variant.outputs.all {
+                outputFileName = "app-v${app_version_name}.apk"
+            }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+  // implementation 'com.yanzhenjie.andserver:api:1.1.4'
+//   annotationProcessor 'com.yanzhenjie.andserver:processor:1.1.4'
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.1'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    implementation group: 'javax.jmdns', name: 'jmdns', version: '3.4.1'
+    implementation group: 'com.alibaba', name: 'fastjson', version: '1.2.75'
+    implementation 'com.github.andriydruk:rx2dnssd:0.9.14'
+    implementation 'com.koushikdutta.async:androidasync:2.+'
+}
