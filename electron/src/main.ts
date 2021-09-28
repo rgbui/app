@@ -9,7 +9,7 @@ function createWindow() {
         }
     })
     // and load the index.html of the app.
-    mainWindow.loadURL('https://viewparse.com')
+    mainWindow.loadURL('https://shy.live')
     // Open the DevTools.
     // mainWindow.webContents.openDevTools()
 }
