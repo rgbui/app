@@ -4,7 +4,7 @@
         "module": "commonjs",
         "declaration": true,
         "sourceMap": false,
-        "outDir": "../dist",
+        "outDir": "../dist/src",
         "alwaysStrict": false,
         "types": [
             // add node as an option

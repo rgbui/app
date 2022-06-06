@@ -2,11 +2,12 @@
   "name": "shy",
   "version": "1.0.0",
   "description": "",
-  "main": "dist/main.js",
+  "main": "dist/src/main.js",
   "scripts": {
     "start": "electron-forge start",
     "package": "electron-forge package",
-    "make": "electron-forge make"
+    "make": "electron-forge make",
+    "build": "tsc --build src/tsconfig.json"
   },
   "keywords": [
     "shy"
@@ -28,7 +29,9 @@
   },
   "config": {
     "forge": {
-      "packagerConfig": {},
+      "packagerConfig": {
+        "asar":true
+      },
       "makers": [
         {
           "name": "@electron-forge/maker-squirrel",

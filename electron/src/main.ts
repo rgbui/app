@@ -1,4 +1,4 @@
-import { app, BrowserWindow } from 'electron';
+import { app, BrowserWindow, protocol } from 'electron';
 import path = require('path');
 function createWindow() {
     // Create the browser window.
@@ -6,12 +6,18 @@ function createWindow() {
         width: 800,
         height: 600,
         webPreferences: {
+            nativeWindowOpen: true // ADD THIS
         }
     })
     // and load the index.html of the app.
-    mainWindow.loadURL('https://shy.live')
+    mainWindow.loadFile(path.join(__dirname, "../view/shy.html"));
     // Open the DevTools.
-    // mainWindow.webContents.openDevTools()
+    mainWindow.webContents.openDevTools();
+    protocol.registerFileProtocol('shy', (request, callback) => {
+        const url = request.url.slice(6);
+        var dir = path.join(__dirname, "../view");
+        callback({ path: path.normalize(`${dir}/${url}`) })
+    })
 }
 
 // This method will be called when Electron has finished
